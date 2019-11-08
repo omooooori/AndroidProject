@@ -1,5 +1,6 @@
 package com.example.test_application;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
             String item = (String)parent.getItemAtPosition(position);
             String show = "You choose the screen : " + item;
             Toast.makeText(MainActivity.this, show, Toast.LENGTH_LONG).show();
+
+            if (item.equals("Some Layouts")) {
+                Intent intent = new Intent(MainActivity.this, SomeLayouts.class);
+                startActivity(intent);
+            }
+
         }
     }
 }

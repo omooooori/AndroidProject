@@ -2,11 +2,13 @@
     <string name="app_name">TEST_Application</string>
     <string name="hello">Hello Android World</string>
 
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+
     <!--These are shown in first main menu-->
     <string-array name="page_list">
         <item>Some Layouts</item>
         <item>Dialogs</item>
-        <item>Screen Transition</item>
         <item>Fragment</item>
         <item>Data Base</item>
         <item>Camera</item>
