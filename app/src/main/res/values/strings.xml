@@ -4,6 +4,7 @@
 
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
+    <string name="progressbar_button">Push</string>
 
     <!--These are shown in first main menu-->
     <string-array name="page_list">
