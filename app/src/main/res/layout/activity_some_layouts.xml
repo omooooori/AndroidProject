@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:padding="20dp"
     android:orientation="vertical">
 
@@ -11,15 +14,15 @@
         android:layout_weight="1">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="0.1"
-                android:hint="Input Text" />
+                android:hint="@string/input_text" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -30,19 +33,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Btn1" />
+                    android:text="@string/btn1" />
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Btn2" />
+                    android:text="@string/btn2" />
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Btn3" />
+                    android:text="@string/btn3" />
             </LinearLayout>
 
             <ProgressBar
@@ -53,11 +56,33 @@
                 android:indeterminate="false"
                 style="@android:style/Widget.ProgressBar.Horizontal" />
 
-            <Button
-                android:id="@+id/progressbar_button"
-                android:text="@string/progressbar_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/progressbar_button"
+                    android:text="@string/progressbar_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/checkbox1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:textSize="10sp"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:textSize="10sp"/>
+            </LinearLayout>
 
 
             <ProgressBar
@@ -67,6 +92,18 @@
                 android:layout_margin="30dp"
                 style="@android:style/Widget.ProgressBar.Large"/>
 
+            <TextView
+                android:id="@+id/text_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#00f"
+                android:textSize="30sp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="#fff" />
         </LinearLayout>
     </ScrollView>
 
