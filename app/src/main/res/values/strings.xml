@@ -2,14 +2,6 @@
     <string name="app_name">TEST_Application</string>
     <string name="hello">Hello Android World</string>
 
-    <string name="ok">OK</string>
-    <string name="cancel">CANCEL</string>
-    <string name="progressbar_button">Push</string>
-    <string name="btn3">Btn3</string>
-    <string name="btn2">Btn2</string>
-    <string name="btn1">Btn1</string>
-    <string name="input_text">Input Text</string>
-
     <!--These are shown in first main menu-->
     <string-array name="page_list">
         <item>Some Layouts</item>
@@ -22,5 +14,18 @@
         <item>GPS</item>
     </string-array>
 
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="progressbar_button">Push</string>
+    <string name="btn3">Btn3</string>
+    <string name="btn2">Btn2</string>
+    <string name="btn1">Btn1</string>
+    <string name="input_text">Input Text</string>
+
+    <!--MenuThanksActivity-->
+    <string name="tv_thx_title">Order Completed</string>
+    <string name="tv_thx_desc">We got the list of order below. \nThank you for your order !!</string>
+    <string name="bt_thx_back">Go back to List</string>
+    <string name="tv_menu_unit">yen</string>
 
 </resources>

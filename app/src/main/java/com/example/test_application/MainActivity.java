@@ -27,10 +27,15 @@ public class MainActivity extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             String item = (String)parent.getItemAtPosition(position);
             String show = "You choose the screen : " + item;
-            Toast.makeText(MainActivity.this, show, Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, show, Toast.LENGTH_SHORT).show();
 
             if (item.equals("Some Layouts")) {
                 Intent intent = new Intent(MainActivity.this, SomeLayouts.class);
+                startActivity(intent);
+            }
+
+            if (item.equals("Option and Context")) {
+                Intent intent = new Intent(MainActivity.this, OptionAndContext.class);
                 startActivity(intent);
             }
 
