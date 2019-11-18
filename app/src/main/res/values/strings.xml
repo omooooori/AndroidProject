@@ -13,7 +13,7 @@
     <!--These are shown in first main menu-->
     <string-array name="page_list">
         <item>Some Layouts</item>
-        <item>Dialogs</item>
+        <item>Option and Context</item>
         <item>Fragment</item>
         <item>Data Base</item>
         <item>Camera</item>
