@@ -14,7 +14,7 @@
         <item>GPS</item>
     </string-array>
 
-    <!--SomeLayouts-->
+    <!--SomeLayoutsActivity-->
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
     <string name="progressbar_button">Push</string>

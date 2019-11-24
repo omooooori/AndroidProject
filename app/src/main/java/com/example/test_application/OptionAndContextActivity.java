@@ -1,6 +1,5 @@
 package com.example.test_application;
 
-import android.app.VoiceInteractor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OptionAndContext extends AppCompatActivity {
+public class OptionAndContextActivity extends AppCompatActivity {
 
     private ListView lvMenu;
     private List<Map<String, Object>> menuList;
@@ -40,7 +39,7 @@ public class OptionAndContext extends AppCompatActivity {
 
         lvMenu = findViewById(R.id.lvMenu);
         menuList = createBookList();
-        SimpleAdapter adapter = new SimpleAdapter(OptionAndContext.this, menuList, R.layout.row, FROM_BOOK, TO_BOOK);
+        SimpleAdapter adapter = new SimpleAdapter(OptionAndContextActivity.this, menuList, R.layout.row, FROM_BOOK, TO_BOOK);
         lvMenu.setAdapter(adapter);
         lvMenu.setOnItemClickListener(new ListMenuAndPriceItemClickListener());
 
@@ -137,7 +136,7 @@ public class OptionAndContext extends AppCompatActivity {
         String menuName  = (String)menu.get("name");
         String menuPrice = (String)menu.get("price");
 
-        Intent intent = new Intent(OptionAndContext.this, MenuThanksActivity.class);
+        Intent intent = new Intent(OptionAndContextActivity.this, MenuThanksActivity.class);
         intent.putExtra("menuName", menuName);
         intent.putExtra("menuPrice", menuPrice);
         startActivity(intent);
@@ -154,7 +153,7 @@ public class OptionAndContext extends AppCompatActivity {
             String languagePurpose  = (String)item.get("purpose");
 
             String show = "Language: " + languageName + " Purpose: " + languagePurpose;
-            Toast toast = Toast.makeText(OptionAndContext.this, show, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(OptionAndContextActivity.this, show, Toast.LENGTH_SHORT);
             toast.show();
         }
     }
@@ -173,7 +172,7 @@ public class OptionAndContext extends AppCompatActivity {
                 if(isItemBook) {
                     menuList = createLanguageList();
                     isItemBook = false;
-                    SimpleAdapter adapter = new SimpleAdapter(OptionAndContext.this,
+                    SimpleAdapter adapter = new SimpleAdapter(OptionAndContextActivity.this,
                             menuList,
                             R.layout.row_language,
                             FROM_LANGUAGE,
@@ -183,7 +182,7 @@ public class OptionAndContext extends AppCompatActivity {
                 } else {
                     menuList = createBookList();
                     isItemBook = true;
-                    SimpleAdapter adapter = new SimpleAdapter(OptionAndContext.this,
+                    SimpleAdapter adapter = new SimpleAdapter(OptionAndContextActivity.this,
                             menuList,
                             R.layout.row,
                             FROM_BOOK,
@@ -193,13 +192,13 @@ public class OptionAndContext extends AppCompatActivity {
                 }
                 return true;
             case R.id.new_item:
-                Toast toast_new_item = Toast.makeText(OptionAndContext.this,
+                Toast toast_new_item = Toast.makeText(OptionAndContextActivity.this,
                         "new item option menu item was selected.",
                         Toast.LENGTH_SHORT);
                 toast_new_item.show();
                 return true;
             case R.id.help:
-                Toast toast_help = Toast.makeText(OptionAndContext.this,
+                Toast toast_help = Toast.makeText(OptionAndContextActivity.this,
                         "help option menu item was selected.",
                         Toast.LENGTH_SHORT);
                 toast_help.show();
@@ -227,7 +226,7 @@ public class OptionAndContext extends AppCompatActivity {
         switch (itemId) {
             case R.id.contextMenuListPublisher:
                 String publisher = (String) menu.get("publisher");
-                Toast.makeText(OptionAndContext.this, publisher, Toast.LENGTH_SHORT).show();
+                Toast.makeText(OptionAndContextActivity.this, publisher, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.contextMenuListOrder:
                 order(menu);

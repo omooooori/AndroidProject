@@ -30,12 +30,17 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, show, Toast.LENGTH_SHORT).show();
 
             if (item.equals("Some Layouts")) {
-                Intent intent = new Intent(MainActivity.this, SomeLayouts.class);
+                Intent intent = new Intent(MainActivity.this, SomeLayoutsActivity.class);
                 startActivity(intent);
             }
 
             if (item.equals("Option and Context")) {
-                Intent intent = new Intent(MainActivity.this, OptionAndContext.class);
+                Intent intent = new Intent(MainActivity.this, OptionAndContextActivity.class);
+                startActivity(intent);
+            }
+
+            if (item.equals("Fragment")) {
+                Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
                 startActivity(intent);
             }
 

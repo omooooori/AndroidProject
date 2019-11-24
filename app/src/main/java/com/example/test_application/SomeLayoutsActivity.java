@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class SomeLayouts extends AppCompatActivity {
+public class SomeLayoutsActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private int val = 0;

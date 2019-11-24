@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuThanksActivity"></activity>
-        <activity android:name=".OptionAndContext"></activity>
-        <activity android:name=".SomeLayouts" />
+        <activity android:name=".FragmentActivity"></activity>
+        <activity android:name=".MenuThanksActivity" />
+        <activity android:name=".OptionAndContextActivity" />
+        <activity android:name=".SomeLayoutsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
