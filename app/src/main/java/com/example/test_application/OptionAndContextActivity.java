@@ -35,7 +35,7 @@ public class OptionAndContextActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.option_and_context);
+        setContentView(R.layout.activity_option_and_context);
 
         lvMenu = findViewById(R.id.lvMenu);
         menuList = createBookList();

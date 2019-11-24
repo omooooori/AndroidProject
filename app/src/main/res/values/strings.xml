@@ -37,5 +37,6 @@
     <string name="context_menu_list_header">Please select control</string>
     <string name="context_menu_list_publisher">Which publisher ?</string>
     <string name="context_menu_list_order">Order</string>
+    <string name="hello_fragment">Hello World</string>
 
 </resources>
