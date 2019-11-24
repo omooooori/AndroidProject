@@ -1,8 +1,10 @@
 package com.example.test_application;
 
+import android.app.VoiceInteractor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,13 +23,13 @@ public class OptionAndContext extends AppCompatActivity {
 
     private ListView lvMenu;
     private List<Map<String, Object>> menuList;
-    private static final String FROM_BOOK[] = {"name", "price"};
-    private static final int TO_BOOK[] = {R.id.tvMenuName, R.id.tvMenuPrice};
+    private static final String FROM_BOOK[]       = {"name", "price"};
+    private static final int    TO_BOOK[]         = {R.id.tvMenuName, R.id.tvMenuPrice};
 
 //    private static final String FROM_LANGUAGE[] = {"language", "priority", "purpose"};
-//    private static final int TO_LANGUAGE[] = {R.id.tvLanguageName, R.id.tvLanguagePriority, R.id.tvLanguagePriority};
-    private static final String FROM_LANGUAGE[] = {"language", "purpose"};
-    private static final int TO_LANGUAGE[] = {R.id.tvLanguageName, R.id.tvLanguagePurpose};
+//    private static final int TO_LANGUAGE[]      = {R.id.tvLanguageName, R.id.tvLanguagePriority, R.id.tvLanguagePriority};
+    private static final String FROM_LANGUAGE[]   = {"language", "purpose"};
+    private static final int    TO_LANGUAGE[]     = {R.id.tvLanguageName, R.id.tvLanguagePurpose};
 
     boolean isItemBook = true;
 
@@ -41,6 +43,9 @@ public class OptionAndContext extends AppCompatActivity {
         SimpleAdapter adapter = new SimpleAdapter(OptionAndContext.this, menuList, R.layout.row, FROM_BOOK, TO_BOOK);
         lvMenu.setAdapter(adapter);
         lvMenu.setOnItemClickListener(new ListMenuAndPriceItemClickListener());
+
+        // For Context menu
+        registerForContextMenu(lvMenu);
     }
 
     private List<Map<String, Object>> createBookList() {
@@ -48,26 +53,31 @@ public class OptionAndContext extends AppCompatActivity {
         Map<String, Object> menu = new HashMap<>();
         menu.put("name", "How Google Works");
         menu.put("price", "900 ");
+        menu.put("publisher", "Nikkei newspaper");
         menuList.add(menu);
 
         menu = new HashMap<>();
         menu.put("name", "Head First. Design Pattern");
         menu.put("price", "4,600 ");
+        menu.put("publisher", "O REILLY");
         menuList.add(menu);
 
         menu = new HashMap<>();
         menu.put("name", "Introduction to Machine Learning with Python");
         menu.put("price", "3,400 ");
+        menu.put("publisher", "O REILLY");
         menuList.add(menu);
 
         menu = new HashMap<>();
         menu.put("name", "Team Geek Google");
         menu.put("price", "2,200 ");
+        menu.put("publisher", "O REILLY");
         menuList.add(menu);
 
         menu = new HashMap<>();
         menu.put("name", "Introduction to C++ from Ryo Ezoe");
         menu.put("price", "900 ");
+        menu.put("publisher", "KADOKAWA");
         menuList.add(menu);
 
         return menuList;
@@ -77,37 +87,37 @@ public class OptionAndContext extends AppCompatActivity {
         List<Map<String, Object>> menuList = new ArrayList<>();
         Map<String, Object> menu = new HashMap<>();
         menu.put("language", "C++");
-//        menu.put("priority", "1");
+        menu.put("priority", "1");
         menu.put("purpose", "Work, CreateGame, AtCoder, Mother Language");
         menuList.add(menu);
 
         menu = new HashMap<>();
         menu.put("language", "Python");
-//        menu.put("priority", "2");
+        menu.put("priority", "2");
         menu.put("purpose", "Machine Learning, ROS, Raspberry Pi, AtCoder");
         menuList.add(menu);
 
         menu = new HashMap<>();
         menu.put("language", "Go");
-//        menu.put("priority", "3");
+        menu.put("priority", "3");
         menu.put("purpose", "System Trade, Web Application, AtCoder, Future");
         menuList.add(menu);
 
         menu = new HashMap<>();
         menu.put("language", "Java");
-//        menu.put("priority", "4");
+        menu.put("priority", "4");
         menu.put("purpose", "Native Android Develop");
         menuList.add(menu);
 
         menu = new HashMap<>();
         menu.put("language", "Kotlin");
-//        menu.put("priority", "5");
+        menu.put("priority", "5");
         menu.put("purpose", "Switch Java to Kotlin in the future");
         menuList.add(menu);
 
         menu = new HashMap<>();
         menu.put("language", "Haskel");
-//        menu.put("priority", "6");
+        menu.put("priority", "6");
         menu.put("purpose", "Functional Language study");
         menuList.add(menu);
 
@@ -119,15 +129,18 @@ public class OptionAndContext extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Map<String, Object> item = (Map<String, Object>) parent.getItemAtPosition(position);
-
-            String menuName  = (String)item.get("name");
-            String menuPrice = (String)item.get("price");
-
-            Intent intent = new Intent(OptionAndContext.this, MenuThanksActivity.class);
-            intent.putExtra("menuName", menuName);
-            intent.putExtra("menuPrice", menuPrice);
-            startActivity(intent);
+            order(item);
         }
+    }
+
+    private void order(Map<String, Object> menu) {
+        String menuName  = (String)menu.get("name");
+        String menuPrice = (String)menu.get("price");
+
+        Intent intent = new Intent(OptionAndContext.this, MenuThanksActivity.class);
+        intent.putExtra("menuName", menuName);
+        intent.putExtra("menuPrice", menuPrice);
+        startActivity(intent);
     }
 
     private class ListProgrammingLanguageItemClickListener implements AdapterView.OnItemClickListener {
@@ -159,7 +172,7 @@ public class OptionAndContext extends AppCompatActivity {
             case R.id.change_item:
                 if(isItemBook) {
                     menuList = createLanguageList();
-                    isItemBook = true;
+                    isItemBook = false;
                     SimpleAdapter adapter = new SimpleAdapter(OptionAndContext.this,
                             menuList,
                             R.layout.row_language,
@@ -169,7 +182,7 @@ public class OptionAndContext extends AppCompatActivity {
                     lvMenu.setOnItemClickListener(new ListProgrammingLanguageItemClickListener());
                 } else {
                     menuList = createBookList();
-                    isItemBook = false;
+                    isItemBook = true;
                     SimpleAdapter adapter = new SimpleAdapter(OptionAndContext.this,
                             menuList,
                             R.layout.row,
@@ -194,5 +207,32 @@ public class OptionAndContext extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, view, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_menu_list, menu);
+        menu.setHeaderTitle(R.string.context_menu_list_header);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int listPosition = info.position;
+        Map<String, Object> menu = menuList.get(listPosition);
+
+        int itemId = item.getItemId();
+        switch (itemId) {
+            case R.id.contextMenuListPublisher:
+                String publisher = (String) menu.get("publisher");
+                Toast.makeText(OptionAndContext.this, publisher, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.contextMenuListOrder:
+                order(menu);
+                break;
+        }
+        return super.onContextItemSelected(item);
     }
 }

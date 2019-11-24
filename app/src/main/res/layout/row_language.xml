@@ -14,12 +14,6 @@
         android:layout_marginTop="10dp"
         android:textSize="18sp"/>
 
-<!--    <TextView-->
-<!--        android:id="@+id/tvLanguagePriority"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="14sp"/>-->
-
     <TextView
         android:id="@+id/tvLanguagePurpose"
         android:layout_width="wrap_content"

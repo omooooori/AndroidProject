@@ -34,5 +34,8 @@
     <string name="change_item">Change Item</string>
     <string name="new_item">New Item</string>
     <string name="help">Help</string>
+    <string name="context_menu_list_header">Please select control</string>
+    <string name="context_menu_list_publisher">Which publisher ?</string>
+    <string name="context_menu_list_order">Order</string>
 
 </resources>
