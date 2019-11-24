@@ -14,6 +14,7 @@
         <item>GPS</item>
     </string-array>
 
+    <!--SomeLayouts-->
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
     <string name="progressbar_button">Push</string>
@@ -27,5 +28,11 @@
     <string name="tv_thx_desc">We got the list of order below. \nThank you for your order !!</string>
     <string name="bt_thx_back">Go back to List</string>
     <string name="tv_menu_unit">yen</string>
+
+    <!--OptionAndContextMenu-->
+    <string name="menu_option">Menu</string>
+    <string name="change_item">Change Item</string>
+    <string name="new_item">New Item</string>
+    <string name="help">Help</string>
 
 </resources>

@@ -3,10 +3,14 @@ package com.example.test_application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,8 +21,15 @@ public class OptionAndContext extends AppCompatActivity {
 
     private ListView lvMenu;
     private List<Map<String, Object>> menuList;
-    private static final String FROM[] = {"name", "price"};
-    private static final int TO[] = {R.id.tvMenuName, R.id.tvMenuPrice};
+    private static final String FROM_BOOK[] = {"name", "price"};
+    private static final int TO_BOOK[] = {R.id.tvMenuName, R.id.tvMenuPrice};
+
+//    private static final String FROM_LANGUAGE[] = {"language", "priority", "purpose"};
+//    private static final int TO_LANGUAGE[] = {R.id.tvLanguageName, R.id.tvLanguagePriority, R.id.tvLanguagePriority};
+    private static final String FROM_LANGUAGE[] = {"language", "purpose"};
+    private static final int TO_LANGUAGE[] = {R.id.tvLanguageName, R.id.tvLanguagePurpose};
+
+    boolean isItemBook = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +38,9 @@ public class OptionAndContext extends AppCompatActivity {
 
         lvMenu = findViewById(R.id.lvMenu);
         menuList = createBookList();
-
-        SimpleAdapter adapter = new SimpleAdapter(OptionAndContext.this, menuList, R.layout.row, FROM, TO);
+        SimpleAdapter adapter = new SimpleAdapter(OptionAndContext.this, menuList, R.layout.row, FROM_BOOK, TO_BOOK);
         lvMenu.setAdapter(adapter);
-        lvMenu.setOnItemClickListener(new ListItemClickListener());
+        lvMenu.setOnItemClickListener(new ListMenuAndPriceItemClickListener());
     }
 
     private List<Map<String, Object>> createBookList() {
@@ -63,7 +73,48 @@ public class OptionAndContext extends AppCompatActivity {
         return menuList;
     }
 
-    private class ListItemClickListener implements AdapterView.OnItemClickListener {
+    private List<Map<String, Object>> createLanguageList() {
+        List<Map<String, Object>> menuList = new ArrayList<>();
+        Map<String, Object> menu = new HashMap<>();
+        menu.put("language", "C++");
+//        menu.put("priority", "1");
+        menu.put("purpose", "Work, CreateGame, AtCoder, Mother Language");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("language", "Python");
+//        menu.put("priority", "2");
+        menu.put("purpose", "Machine Learning, ROS, Raspberry Pi, AtCoder");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("language", "Go");
+//        menu.put("priority", "3");
+        menu.put("purpose", "System Trade, Web Application, AtCoder, Future");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("language", "Java");
+//        menu.put("priority", "4");
+        menu.put("purpose", "Native Android Develop");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("language", "Kotlin");
+//        menu.put("priority", "5");
+        menu.put("purpose", "Switch Java to Kotlin in the future");
+        menuList.add(menu);
+
+        menu = new HashMap<>();
+        menu.put("language", "Haskel");
+//        menu.put("priority", "6");
+        menu.put("purpose", "Functional Language study");
+        menuList.add(menu);
+
+        return menuList;
+    }
+
+    private class ListMenuAndPriceItemClickListener implements AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -76,6 +127,72 @@ public class OptionAndContext extends AppCompatActivity {
             intent.putExtra("menuName", menuName);
             intent.putExtra("menuPrice", menuPrice);
             startActivity(intent);
+        }
+    }
+
+    private class ListProgrammingLanguageItemClickListener implements AdapterView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Map<String, Object> item = (Map<String, Object>) parent.getItemAtPosition(position);
+
+            String languageName     = (String)item.get("language");
+//            String languagePriority = (String)item.get("priority");
+            String languagePurpose  = (String)item.get("purpose");
+
+            String show = "Language: " + languageName + " Purpose: " + languagePurpose;
+            Toast toast = Toast.makeText(OptionAndContext.this, show, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.option, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.change_item:
+                if(isItemBook) {
+                    menuList = createLanguageList();
+                    isItemBook = true;
+                    SimpleAdapter adapter = new SimpleAdapter(OptionAndContext.this,
+                            menuList,
+                            R.layout.row_language,
+                            FROM_LANGUAGE,
+                            TO_LANGUAGE);
+                    lvMenu.setAdapter(adapter);
+                    lvMenu.setOnItemClickListener(new ListProgrammingLanguageItemClickListener());
+                } else {
+                    menuList = createBookList();
+                    isItemBook = false;
+                    SimpleAdapter adapter = new SimpleAdapter(OptionAndContext.this,
+                            menuList,
+                            R.layout.row,
+                            FROM_BOOK,
+                            TO_BOOK);
+                    lvMenu.setAdapter(adapter);
+                    lvMenu.setOnItemClickListener(new ListMenuAndPriceItemClickListener());
+                }
+                return true;
+            case R.id.new_item:
+                Toast toast_new_item = Toast.makeText(OptionAndContext.this,
+                        "new item option menu item was selected.",
+                        Toast.LENGTH_SHORT);
+                toast_new_item.show();
+                return true;
+            case R.id.help:
+                Toast toast_help = Toast.makeText(OptionAndContext.this,
+                        "help option menu item was selected.",
+                        Toast.LENGTH_SHORT);
+                toast_help.show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

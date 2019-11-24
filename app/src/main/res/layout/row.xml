@@ -32,7 +32,6 @@
             android:text="@string/tv_menu_unit"
             android:textSize="14sp"/>
 
-
     </LinearLayout>
 
 </LinearLayout>
