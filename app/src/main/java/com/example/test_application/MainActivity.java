@@ -44,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
 
+            if (item.equals("Camera")) {
+                Intent intent = new Intent(MainActivity.this, UseCameraActivity.class);
+                startActivity(intent);
+            }
+
         }
     }
 }
